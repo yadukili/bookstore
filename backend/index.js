@@ -16,7 +16,7 @@ app.use(express.json());
 // Option 2: Allow Custom Origins
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   })
@@ -24,7 +24,7 @@ app.use(
 
 
 
-app.post('/users',async(request,response)=>{
+app.post('/signup',async(request,response)=>{
   try {
       if (
         !request.body.email ||
@@ -47,6 +47,34 @@ app.post('/users',async(request,response)=>{
     response.status(500).send({ message: error.message });
   }
 });
+
+app.post('/login',async(request,response)=>{
+  const {email, password} = request.body;
+  User.findOne({email:email})
+  .then(user=>{
+    if (user)
+      {
+      if (user.password === password)
+         {
+          response.json("success")
+         }
+      else
+        {
+          response.json("wrong password")
+
+        }   
+      }  
+   else  
+   {
+     response.json("user not found")
+   }
+  
+})
+})
+    
+
+
+
 
 
 app.use('/books', booksRoute);

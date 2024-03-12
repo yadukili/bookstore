@@ -5,7 +5,7 @@ import CreateBook from './pages/CreateBooks';
 import ShowBook from './pages/ShowBook';
 import EditBook from './pages/EditBook';
 import DeleteBook from './pages/DeleteBook';
-// import Login from './pages/Login';
+import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 
@@ -14,7 +14,7 @@ const App = () => {
     <Routes>
       <Route path='/home' element={<Home/>} />
       <Route path='/' element={<Signup/>} />
-      {/* <Route path='/login' element={<Login/>} /> */}
+      <Route path='/login' element={<Login/>} />
      
 
       <Route path='/books/create' element={<CreateBook />} />
